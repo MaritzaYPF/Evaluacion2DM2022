@@ -63,84 +63,63 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(p0: View?) {
         when (p0!!.id) {
             binding.layoutPrincipal.btnIniciarJuego.id -> {
-
-//                val intent = Intent(
-//                    this,
-//                    IniciarJuegoActivity::class.java
-//                )
-//                startActivity(intent)
-//                configProgressDialog()
-
-
-                //bueno
-//                dificultad = intent.extras!!.getInt("dificultad")
-//                nickname = intent.extras!!.getString("nickname").toString()
-//
-//                val intent = Intent(
-//                    this,
-//                    IniciarJuegoActivity::class.java
-//                )
-//                intent.putExtra("dificultad", dificultad)
-//                intent.putExtra("nickname", nickname)
-//                startActivity(intent)
-//                configProgressDialog()
-
                 dificultad = intent.extras!!.getInt("dificultad")
                 nickname = intent.extras!!.getString("nickname").toString()
                 intentoI = intent.extras!!.getInt("intentoInicial")
-                if (dificultad == 0) {
-                    /// Snackbar
-                    Snackbar.make(
-                        binding.root, R.string.registre_su_nickname_primero_en_configuraciones,
-                        Snackbar.LENGTH_SHORT
-                    ).show()
-                } else {
 
-                    if (dificultad == 1) {
-                        // Facil
-                        respuestaCorrecta = (Math.random() * nFacil).toInt() + 1
+                    if (dificultad == 0) {
+                        /// Snackbar
+                        Snackbar.make(
+                            binding.root, R.string.registre_su_nickname_primero_en_configuraciones,
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                    } else {
 
-                        val intent = Intent(
-                            this,
-                            IniciarJuegoActivity::class.java
-                        )
-                        intent.putExtra("dificultad", dificultad)
-                        intent.putExtra("nickname", nickname)
-                        intent.putExtra("respuestaCorrecta", respuestaCorrecta)
-                        intent.putExtra("intentoInicial", intentoI)
+                        if (dificultad == 1) {
+                            // Facil
+                            respuestaCorrecta = (Math.random() * nFacil).toInt() + 1
 
-                        startActivity(intent)
-                        configProgressDialog()
-                    } else if (dificultad == 2) {
-                        // Medio
-                        respuestaCorrecta = (Math.random() * nMedio).toInt() + 1
+                            val intent = Intent(
+                                this,
+                                IniciarJuegoActivity::class.java
+                            )
+                            intent.putExtra("dificultad", dificultad)
+                            intent.putExtra("nickname", nickname)
+                            intent.putExtra("respuestaCorrecta", respuestaCorrecta)
+                            intent.putExtra("intentoInicial", intentoI)
 
-                        val intent = Intent(
-                            this,
-                            IniciarJuegoActivity::class.java
-                        )
-                        intent.putExtra("dificultad", dificultad)
-                        intent.putExtra("nickname", nickname)
-                        intent.putExtra("respuestaCorrecta", respuestaCorrecta)
-                        intent.putExtra("intentoInicial", intentoI)
-                        startActivity(intent)
-                        configProgressDialog()
-                    } else if (dificultad == 3) {
-                        // Dificil
-                        respuestaCorrecta = (Math.random() * nDificil).toInt() + 1
+                            startActivity(intent)
+                            configProgressDialog()
+                        } else if (dificultad == 2) {
+                            // Medio
+                            respuestaCorrecta = (Math.random() * nMedio).toInt() + 1
 
-                        val intent = Intent(
-                            this,
-                            IniciarJuegoActivity::class.java
-                        )
-                        intent.putExtra("dificultad", dificultad)
-                        intent.putExtra("nickname", nickname)
-                        intent.putExtra("respuestaCorrecta", respuestaCorrecta)
-                        intent.putExtra("intentoInicial", intentoI)
-                        startActivity(intent)
-                        configProgressDialog()
+                            val intent = Intent(
+                                this,
+                                IniciarJuegoActivity::class.java
+                            )
+                            intent.putExtra("dificultad", dificultad)
+                            intent.putExtra("nickname", nickname)
+                            intent.putExtra("respuestaCorrecta", respuestaCorrecta)
+                            intent.putExtra("intentoInicial", intentoI)
+                            startActivity(intent)
+                            configProgressDialog()
+                        } else if (dificultad == 3) {
+                            // Dificil
+                            respuestaCorrecta = (Math.random() * nDificil).toInt() + 1
+
+                            val intent = Intent(
+                                this,
+                                IniciarJuegoActivity::class.java
+                            )
+                            intent.putExtra("dificultad", dificultad)
+                            intent.putExtra("nickname", nickname)
+                            intent.putExtra("respuestaCorrecta", respuestaCorrecta)
+                            intent.putExtra("intentoInicial", intentoI)
+                            startActivity(intent)
+                            configProgressDialog()
+                        }
                     }
-                }
             }
             binding.layoutPrincipal.btnPuntaje.id -> {
                 startActivity(Intent(this, PuntajeActivity::class.java))

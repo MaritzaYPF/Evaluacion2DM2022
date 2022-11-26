@@ -32,5 +32,11 @@
     <string name="titulo_eliminar">Eliminar</string>
     <string name="msg_eliminar">Realmente desea eliminar?</string>
     <string name="se_actualizo">Actualizacion correcta</string>
+    <string name="configuracion">Configuracion</string>
+    <string name="desarrolladores">Desarrolladores</string>
+    <string name="puntajes_alto">Puntajes Alto</string>
+    <string name="iniciar_juego">Iniciar Juego</string>
+    <string name="MyName2">Maritza Yamileth Perez Funes</string>
+    <string name="MyCod2">PF19-I04-001</string>
 
 </resources>

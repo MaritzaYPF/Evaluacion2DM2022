@@ -30,9 +30,11 @@ class IniciarJuegoActivity : AppCompatActivity(), View.OnClickListener {
     private var numeroIntentos: Int = 0
     private var miRespuesta: Int = 0
     private var respuestaCorrecta: Int = 0
-    private var puntajeInicial:Int = 10
+    private var puntajeInicial:Int = 0
     private var obtenerP:Int=0
     private lateinit var valor:String
+    private var numrestante:Int = 10
+    private var restPuntajeAlmacenado:Int = 0
 
 
     @SuppressLint("SetTextI18n")
@@ -63,10 +65,10 @@ class IniciarJuegoActivity : AppCompatActivity(), View.OnClickListener {
         if(intento==1){
             //Usuario registrado
             obtenerP = UsuarioApplication.database.getUsuarioDao().valorPuntaje(nickname)
-            binding.layoutIniciarJuego.txtPuntajes.text = "Score:${obtenerP.toString()} "
+            binding.layoutIniciarJuego.txtPuntajes.text = obtenerP.toString()
         }else{
             //Usuario nuevo
-            binding.layoutIniciarJuego.txtPuntajes.text = "Score: $puntajeInicial"
+            binding.layoutIniciarJuego.txtPuntajes.text = puntajeInicial.toString()
         }
 
         // Configuracion de evento click para el botón de registro
@@ -141,7 +143,7 @@ class IniciarJuegoActivity : AppCompatActivity(), View.OnClickListener {
                         if (miRespuesta == respuestaCorrecta) {
 
                             if(intento ==0) {
-                                puntajeInicial +=10
+                                puntajeInicial +=5
                                 doAsync {
                                     UsuarioApplication.database.getUsuarioDao().addUsuario(
                                         UsuarioEntity(
@@ -162,12 +164,13 @@ class IniciarJuegoActivity : AppCompatActivity(), View.OnClickListener {
                                 ).show()
                             }else{
 
-                                valor = (puntajeInicial+obtenerP).toString()
-                                binding.layoutIniciarJuego.txtPuntajes.text = valor
+                               obtenerP+=5
+                           //     valor = (puntajeInicial+obtenerP).toString()
+                              //  binding.layoutIniciarJuego.txtPuntajes.text = valor
 
                                 doAsync {
                                    UsuarioApplication.database.getUsuarioDao()
-                                       .update(valor,numeroIntentos.toString(), nickname)
+                                       .update(obtenerP.toString(),numeroIntentos.toString(), nickname)
                                     uiThread {
                                         goToMainActivity()
                                     }
@@ -178,7 +181,7 @@ class IniciarJuegoActivity : AppCompatActivity(), View.OnClickListener {
 
                                 if (miRespuesta < respuestaCorrecta) {
 
-                                    // El numero correcto es mayor
+                                     // El numero correcto es mayor
                                     /// Snackbar
                                     Snackbar.make(
                                         binding.root, R.string.numero_es_mayor,
@@ -186,7 +189,6 @@ class IniciarJuegoActivity : AppCompatActivity(), View.OnClickListener {
                                     ).show()
 
                                 } else if (miRespuesta > respuestaCorrecta) {
-
                                     /// Snackbar
                                     Snackbar.make(
                                         binding.root, R.string.numero_es_menor,
@@ -195,6 +197,18 @@ class IniciarJuegoActivity : AppCompatActivity(), View.OnClickListener {
 
                                 }
                         }
+
+          /*              if(intento==1){
+                            //resdiatrado
+                            obtenerP -=1
+                            binding.layoutIniciarJuego.txtPuntajes.text = obtenerP.toString()
+
+                        }else{
+                            numrestante -=1
+                            binding.layoutIniciarJuego.txtPuntajes.text = numrestante.toString()
+
+                        }*/
+
                         numeroIntentos += 1
                         binding.layoutIniciarJuego.txtAttempts.text  =
                             "Numero de intentos: $numeroIntentos"
@@ -211,7 +225,7 @@ class IniciarJuegoActivity : AppCompatActivity(), View.OnClickListener {
                             //Medio
 
                             if(intento ==0) {
-                                puntajeInicial +=10
+                                puntajeInicial +=5
                                 doAsync {
                                     UsuarioApplication.database.getUsuarioDao().addUsuario(
                                         UsuarioEntity(
@@ -233,11 +247,11 @@ class IniciarJuegoActivity : AppCompatActivity(), View.OnClickListener {
                             }else{
 
                                 valor = (puntajeInicial+obtenerP).toString()
-                                binding.layoutIniciarJuego.txtPuntajes.text = valor
+                              //  binding.layoutIniciarJuego.txtPuntajes.text = valor
 
                                 doAsync {
                                     UsuarioApplication.database.getUsuarioDao()
-                                        .update(valor,numeroIntentos.toString(), nickname)
+                                        .update(valor, numeroIntentos.toString(), nickname)
                                     uiThread {
                                         goToMainActivity()
                                     }
@@ -275,7 +289,7 @@ class IniciarJuegoActivity : AppCompatActivity(), View.OnClickListener {
                         if (miRespuesta == respuestaCorrecta) {
                             //Dificil
                             if(intento ==0) {
-                                puntajeInicial +=10
+                                puntajeInicial +=5
                                 doAsync {
                                     UsuarioApplication.database.getUsuarioDao().addUsuario(
                                         UsuarioEntity(
@@ -297,11 +311,11 @@ class IniciarJuegoActivity : AppCompatActivity(), View.OnClickListener {
                             }else{
 
                                 valor = (puntajeInicial+obtenerP).toString()
-                                binding.layoutIniciarJuego.txtPuntajes.text = valor
+                              //  binding.layoutIniciarJuego.txtPuntajes.text = valor
 
                                 doAsync {
                                     UsuarioApplication.database.getUsuarioDao()
-                                        .update(valor, numeroIntentos.toString(), nickname)
+                                        .update(valor,numeroIntentos.toString(), nickname)
                                     uiThread {
                                         goToMainActivity()
                                     }
